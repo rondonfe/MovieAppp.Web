@@ -1,0 +1,41 @@
+﻿@model List<Movie>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title>
+    <link href="/css/style.css" rel="stylesheet" />    
+    </head>
+    <body>
+
+    @foreach (var movie in Model)
+    {
+        <div class="film">
+            <img src="/img/@movie.ImageUrl" alt="@movie.Title" />
+            <p>@movie.Title</p>
+            <p>@movie.Description</p>
+            <p>@movie.Directors</p>
+            <ul>
+                @foreach (var player in movie.Players)
+                {
+                    <li>@player</li>
+                }
+            </ul>
+        </div>
+        /*
+        Ne oluyor burada?
+
+        Model, Controller’dan gelen veriyi temsil ediyor (Movie veya List<Movie> olabilir).
+
+        foreach (var movie in Model) diyorsun → burası liste (koleksiyon) bekler.
+        Ama Controller’dan sen tek Movie göndermiştin (return View(m);). Yani ya:
+
+        Controller’dan List<Movie> göndermelisin,
+
+        Ya da View’de foreach değil, direkt Model.Title, Model.Description gibi kullanmalısın.
+
+        İçeride film bilgilerini (Title, Description, Directors) yazdırıyorsun.
+
+        Sonra Players üzerinden tekrar foreach ile dönüp oyuncuları listeliyorsun.
+        */
+    }
+      </body>
+</html>

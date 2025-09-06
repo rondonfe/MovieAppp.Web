@@ -22,6 +22,8 @@ namespace MovieAppp.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();//wwwroot
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -29,7 +31,7 @@ namespace MovieAppp.Web
 
 
                 endpoints.MapControllerRoute(
-                    name: "defaul",
+                    name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
                 //endpoints.MapControllerRoute(
