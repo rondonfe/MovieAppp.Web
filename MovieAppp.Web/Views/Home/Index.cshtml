@@ -1,25 +1,15 @@
 ﻿@model Movie
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title></title>
-        <link href="/css/style.css" rel="stylesheet" />
-    </head> 
-    <body>
+@section header{
+
+    @await Html.PartialAsync("_header")
+}
+
        <h1>Film Listesi</h1>
        <div id="filmler">
-          <div class="film">
-              <img src="/img/@Model.ImageUrl" alt="@Model.Title" />
-              <p>@Model.Title</p>
-              <p>@Model.Description</p>
-              <p>@Model.Directors</p>
-              <ul>
-                  @foreach (var player in Model.Players)
-                  {
-                      <li>@player</li>
-                  }
-              </ul>
-          </div>
+
+       @await Html.PartialAsync("_movie",Model)
+
        </div>
-    </body>
-</html>
+          
+   

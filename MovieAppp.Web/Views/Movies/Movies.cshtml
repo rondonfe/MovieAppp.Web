@@ -1,25 +1,16 @@
 ﻿@model List<Movie>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head><title></title>
-    <link href="/css/style.css" rel="stylesheet" />    
-    </head>
-    <body>
+
+
+
+        <h1>Film Listesi</h1>
+        <div id="filmler"></div>
 
     @foreach (var movie in Model)
     {
-        <div class="film">
-            <img src="/img/@movie.ImageUrl" alt="@movie.Title" />
-            <p>@movie.Title</p>
-            <p>@movie.Description</p>
-            <p>@movie.Directors</p>
-            <ul>
-                @foreach (var player in movie.Players)
-                {
-                    <li>@player</li>
-                }
-            </ul>
-        </div>
+       @await Html.PartialAsync("_movie",movie)
+       
+        
         /*
         Ne oluyor burada?
 
@@ -37,5 +28,7 @@
         Sonra Players üzerinden tekrar foreach ile dönüp oyuncuları listeliyorsun.
         */
     }
-      </body>
-</html>
+@section menu
+{
+    @await Html.PartialAsync("_menu")
+}
