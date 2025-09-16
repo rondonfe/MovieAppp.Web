@@ -1,34 +1,48 @@
-﻿@model List<Movie>
+﻿@model MovieViewModel
 
 
 
 
         <h1>Film Listesi</h1>
-        <div id="filmler"></div>
+        <div id="filmler">
+            @if (Model.Movies.Count() > 0)
+            {
+        @foreach (var movie in Model.Movies)
+        {
+            @await Html.PartialAsync("_movie", movie)
 
-    @foreach (var movie in Model)
-    {
-       @await Html.PartialAsync("_movie",movie)
-       
-        
-        /*
-        Ne oluyor burada?
 
-        Model, Controller’dan gelen veriyi temsil ediyor (Movie veya List<Movie> olabilir).
+            /*
+            Ne oluyor burada?
 
-        foreach (var movie in Model) diyorsun → burası liste (koleksiyon) bekler.
-        Ama Controller’dan sen tek Movie göndermiştin (return View(m);). Yani ya:
+            Model, Controller’dan gelen veriyi temsil ediyor (Movie veya List<Movie> olabilir).
 
-        Controller’dan List<Movie> göndermelisin,
+            foreach (var movie in Model) diyorsun → burası liste (koleksiyon) bekler.
+            Ama Controller’dan sen tek Movie göndermiştin (return View(m);). Yani ya:
 
-        Ya da View’de foreach değil, direkt Model.Title, Model.Description gibi kullanmalısın.
+            Controller’dan List<Movie> göndermelisin,
 
-        İçeride film bilgilerini (Title, Description, Directors) yazdırıyorsun.
+            Ya da View’de foreach değil, direkt Model.Title, Model.Description gibi kullanmalısın.
 
-        Sonra Players üzerinden tekrar foreach ile dönüp oyuncuları listeliyorsun.
-        */
+            İçeride film bilgilerini (Title, Description, Directors) yazdırıyorsun.
+
+            Sonra Players üzerinden tekrar foreach ile dönüp oyuncuları listeliyorsun.
+            */
+        }
     }
+
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+           Film bulunamadı!!
+        </div>
+    }
+   
+        </div>
+
+   
 @section menu
 {
-    @await Html.PartialAsync("_menu")
+    @* @await Html.PartialAsync("_menu",Model.Genres) *@
+    @await Component.InvokeAsync("Genres")
 }

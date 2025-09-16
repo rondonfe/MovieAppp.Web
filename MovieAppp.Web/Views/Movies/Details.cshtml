@@ -1,2 +1,29 @@
-﻿
-        movies/detils
+﻿@model Movie
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+                <img src="/img/@Model.ImageUrl" alt="@Model.Title Poster" class="img-fluid rounded shadow-sm" style="max-height: 350px;" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">@Model.Title</h2>
+                    <h6 class="text-muted mb-2">Directed by: <span class="fw-bold">@Model.Directors</span></h6>
+                    <hr />
+                    <p class="card-text mb-4">@Model.Description</p>
+                    <div>
+                        <h5 class="mb-2">Cast</h5>
+                        <ul class="list-group list-group-flush mb-3">
+                            @foreach (var item in Model.Players)
+                            {
+                                <li class="list-group-item">@item</li>
+                            }
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

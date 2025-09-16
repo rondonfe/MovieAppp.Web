@@ -1,58 +1,57 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieAppp.Web.Data;
 using MovieAppp.Web.Models;
 
 namespace MovieAppp.Web.Controllers
 {
     public class MoviesController : Controller
     {
-
+        // Anasayfa gibi çalışacak aksiyon.
+        // Burada henüz film listesi gösterilmiyor, sadece boş bir View dönüyor.
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult List()
+
+        // Film listesini getiren aksiyon.
+        // "id" parametresi gelirse (kategori/genre id), o kategoriye göre filtreleme yapılıyor.
+        public IActionResult List(int? id)
         {
-            var filmListesi = new List<Movie>()
+            // Repository'den tüm filmleri alıyoruz.
+            //{controller}/{action}/{id?}
+
+            //var controller = RouteData.Values["controller"];
+            //var action= RouteData.Values["action"];
+            //var genreid = RouteData.Values["id"];
+
+            var movies = MovieRepository.Movies;
+
+            // Eğer id null değilse, yani kategori seçildiyse, sadece o kategoriye ait filmleri alıyoruz.
+            if (id != null)
             {
-                new Movie
-                {
-                    Title = "film baslıgı",
-                    Description = "film açıklaması",
-                    Directors = "film yönetmeni",
-                    Players = string.Join(",", new string[] { "oyuncu1", "oyuncu2" }),
-                    ImageUrl="1.jpg"
-                },
-                 new Movie
-                {
-                    Title = "film baslıgı",
-                    Description = "film açıklaması",
-                    Directors = "film yönetmeni",
-                    Players = string.Join(",", new string[] { "oyuncu1", "oyuncu2" }),
-                    ImageUrl="2.jpg"
-                },
-                  new Movie
-                {
-                    Title = "film baslıgı",
-                    Description = "film açıklaması",
-                    Directors = "film yönetmeni",
-                    Players = string.Join(",", new string[] { "oyuncu1", "oyuncu2" }),
-                    ImageUrl="3.jpg"
-                },
-                   new Movie
-                {
-                    Title = "film baslıgı",
-                    Description = "film açıklaması",
-                    Directors = "film yönetmeni",
-                    Players = string.Join(",", new string[] { "oyuncu1", "oyuncu2" }),
-                    ImageUrl="1.jpg"
-                },
+                movies = movies.Where(m => m.GenreId == id).ToList();
+            }
+
+            // ViewModel oluşturuluyor.
+            // ViewModel -> View'e hangi verilerin gönderileceğini belirleyen özel model sınıfıdır.
+            // Burada sadece Movies listesi ekleniyor ama istersek kategori adı, toplam film sayısı gibi ekstra veriler de koyabiliriz.
+            var model = new MovieViewModel()
+            {
+                Movies = movies
             };
 
-            return View("Movies",filmListesi);
+            // "Movies" adındaki View dosyasına (Movies.cshtml) model gönderiliyor.
+            // Böylece View tarafında @model MovieViewModel diyerek verilere erişebiliriz.
+            return View("Movies", model);
         }
-        public IActionResult Details()
+
+        // Belirli bir filmin detaylarını getiren aksiyon.
+        // id parametresi ile film seçiliyor.
+        public IActionResult Details(int id)
         {
-            return View();
+            // Repository'den id'ye göre film bulunuyor.
+            // Bulunan tekil film nesnesi direkt View'e gönderiliyor.
+            return View(MovieRepository.GetMovieById(id));
         }
     }
 }
