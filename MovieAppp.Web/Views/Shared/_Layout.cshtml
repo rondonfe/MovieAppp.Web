@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
+    @RenderSection("message",required:false) 
    @await Html.PartialAsync("_navbar")
    @RenderSection("header",false)
 

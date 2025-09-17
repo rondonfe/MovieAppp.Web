@@ -13,13 +13,16 @@
                     <hr />
                     <p class="card-text mb-4">@Model.Description</p>
                     <div>
-                        <h5 class="mb-2">Cast</h5>
-                        <ul class="list-group list-group-flush mb-3">
-                            @foreach (var item in Model.Players)
-                            {
-                                <li class="list-group-item">@item</li>
-                            }
-                        </ul>
+                        @if (Model.Players!=null)
+                        {
+                            <h5 class="mb-2">Cast</h5>
+                            <ul class="list-group list-group-flush mb-3">
+                                @foreach (var item in Model.Players)
+                                {
+                                    <li class="list-group-item">@item</li>
+                                }
+                            </ul>
+                        }
                     </div>
                     
                 </div>
