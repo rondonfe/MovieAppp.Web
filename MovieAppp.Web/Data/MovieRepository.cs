@@ -1,4 +1,5 @@
-﻿    using MovieAppp.Web.Models;
+﻿using MovieAppp.Web.Entity;
+using MovieAppp.Web.Models;
 
     namespace MovieAppp.Web.Data
     {
@@ -17,7 +18,7 @@
             Title = "Jiu Jitsu",
             Description = "Dünya'yı istilaya gelen uzaylılara karşı antik Jiu Jitsu savaşçıları savaşmak zorundadır.",
             Directors = "Dimitri Logothetis",
-            Players = new List<string> { "Nicolas Cage", "Alain Moussi" },
+            
             ImageUrl = "1.jpg",
             GenreId = 1
         },
@@ -27,7 +28,7 @@
             Title = "Zenci 2",
             Description = "Yeraltı dünyasında geçen intikam ve aksiyon dolu bir devam hikayesi.",
             Directors = "Dimitri Logothetis",
-            Players = new List<string> { "Nicolas Cage", "Alain Moussi" },
+         
             ImageUrl = "2.jpg",
             GenreId = 1
         },
@@ -47,7 +48,6 @@
             Title = "Tenet",
             Description = "Zamanı tersine çevirerek geleceği kurtarmaya çalışan gizli bir ajanın hikayesi.",
             Directors = "Christopher Nolan",
-            Players = new List<string> { "John David Washington", "Robert Pattinson" },
             ImageUrl = "4.jpg",
             GenreId = 3
         },
@@ -57,7 +57,7 @@
             Title = "Tenet",
             Description = "Paralel gerçeklikler ve zaman kırılmalarıyla dolu akıl almaz bir casusluk hikayesi.",
             Directors = "Christopher Nolan",
-            Players = new List<string> { "John David Washington", "Elizabeth Debicki" },
+          
             ImageUrl = "5.jpg",
             GenreId = 3
         },
@@ -67,7 +67,7 @@
             Title = "Zenci 2",
             Description = "Savaşın gölgesinde, dostluk ve ihanet arasında sıkışan bir adamın dramı.",
             Directors = "Dimitri Logothetis",
-            Players = new List<string> { "oyuncu1", "oyuncu2" },
+          
             ImageUrl = "6.jpg",
             GenreId = 4
         }

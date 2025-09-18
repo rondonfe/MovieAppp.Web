@@ -1,14 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieAppp.Web.Data;
+using MovieAppp.Web.Entity;
 using MovieAppp.Web.Models;
 
 namespace MovieAppp.Web.ViewComponents
 {
+   
     // ViewComponent: Tekrar kullanılabilir küçük UI parçaları oluşturur.
     // Mesela kategori menüsü, sepet özeti, kullanıcı profili gibi.
 
     public class GenresViewComponent : ViewComponent
     {
+        private readonly MovieContext _context;
+
+        public GenresViewComponent(MovieContext context)
+        {
+            _context = context;
+        }
         // Invoke() → Bu ViewComponent çağrıldığında çalışır.
         public IViewComponentResult Invoke()
         {
@@ -18,7 +27,7 @@ namespace MovieAppp.Web.ViewComponents
 
             // GenreRepository.Genres: Statik olarak tanımlı kategori listesi.
             // Bu listeyi View’e gönderiyoruz.
-            return View(GenreRepository.Genres);
+            return View(_context.Genres.ToList());
         }
     }
 }

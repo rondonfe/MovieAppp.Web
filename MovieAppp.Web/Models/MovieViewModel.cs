@@ -1,4 +1,6 @@
-﻿namespace MovieAppp.Web.Models
+﻿using MovieAppp.Web.Entity;
+
+namespace MovieAppp.Web.Models
 {
     public class MovieViewModel
     {

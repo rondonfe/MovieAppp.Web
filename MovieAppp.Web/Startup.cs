@@ -1,18 +1,38 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieAppp.Web.Data;
+using MovieAppp.Web.Entity;
 
 namespace MovieAppp.Web
 {
     public class Startup
     {
-        // Servis ekleme kısmı
+        // IConfiguration arayüzü sayesinde appsettings.json'daki
+        // ConnectionString gibi ayarları okuyabiliyoruz
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        // Uygulamanın ihtiyaç duyduğu servisleri buraya ekliyoruz
         public void ConfigureServices(IServiceCollection services)
         {
-            // MVC (Model-View-Controller) servisini ekledik
+            // MVC (Model-View-Controller) servisini ekliyoruz
             services.AddControllersWithViews();
+
+            // Veritabanı bağlantısını ekleme
+            // Burada MovieContext sınıfını DbContext olarak tanımlıyoruz
+            // appsettings.json içindeki "DefaultConnection" kısmından
+            // SQLite bağlantı cümlesini çekiyor
+            services.AddDbContext<MovieContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
+
 
         // Middleware pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -20,6 +40,7 @@ namespace MovieAppp.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DataSeeding.Seed(app);
             }
 
             app.UseStaticFiles();//wwwroot

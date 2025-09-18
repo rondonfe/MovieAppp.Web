@@ -1,10 +1,11 @@
-﻿using MovieAppp.Web.Models;
+﻿using MovieAppp.Web.Entity;
+using MovieAppp.Web.Models;
 
 namespace MovieAppp.Web.Data
 {
     public class GenreRepository
     {
-        private static readonly List<Genre> _genres=null;
+        private static readonly List<Genre> _genres = null;
 
         static GenreRepository()
         {
