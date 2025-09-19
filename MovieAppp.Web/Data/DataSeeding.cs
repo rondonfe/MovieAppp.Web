@@ -22,7 +22,7 @@ namespace MovieAppp.Web.Data
                              MovieId = 1,
                              Title = "Jiu Jitsu",
                              Description = "Dünya'yı istilaya gelen uzaylılara karşı antik Jiu Jitsu savaşçıları savaşmak zorundadır.",
-                             Directors = "Dimitri Logothetis",
+                             
 
                              ImageUrl = "1.jpg",
                              GenreId = 1
@@ -32,7 +32,7 @@ namespace MovieAppp.Web.Data
             MovieId = 2,
             Title = "Zenci 2",
             Description = "Yeraltı dünyasında geçen intikam ve aksiyon dolu bir devam hikayesi.",
-            Directors = "Dimitri Logothetis",
+            
 
             ImageUrl = "2.jpg",
             GenreId = 1
@@ -42,8 +42,7 @@ namespace MovieAppp.Web.Data
             MovieId = 3,
             Title = "Zenci 2",
             Description = "Bir baba, ailesini korumak için geçmişte yaptığı hatalarla yüzleşmek zorunda kalır.",
-            Directors = "Dimitri Logothetis",
-            Players = new List<string> { "oyuncu1", "oyuncu2" },
+            
             ImageUrl = "3.jpg",
             GenreId = 2
         },
@@ -52,7 +51,7 @@ namespace MovieAppp.Web.Data
             MovieId = 4,
             Title = "Tenet",
             Description = "Zamanı tersine çevirerek geleceği kurtarmaya çalışan gizli bir ajanın hikayesi.",
-            Directors = "Christopher Nolan",
+            
             ImageUrl = "4.jpg",
             GenreId = 3
         },
@@ -61,8 +60,6 @@ namespace MovieAppp.Web.Data
             MovieId = 5,
             Title = "Tenet",
             Description = "Paralel gerçeklikler ve zaman kırılmalarıyla dolu akıl almaz bir casusluk hikayesi.",
-            Directors = "Christopher Nolan",
-
             ImageUrl = "5.jpg",
             GenreId = 3
         },
@@ -71,7 +68,7 @@ namespace MovieAppp.Web.Data
             MovieId = 6,
             Title = "Zenci 2",
             Description = "Savaşın gölgesinde, dostluk ve ihanet arasında sıkışan bir adamın dramı.",
-            Directors = "Dimitri Logothetis",
+            
 
             ImageUrl = "6.jpg",
             GenreId = 4

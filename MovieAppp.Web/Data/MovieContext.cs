@@ -16,5 +16,7 @@ namespace MovieAppp.Web.Entity
 
         // Genres tablosuna karşılık gelen DbSet
         public DbSet<Genre> Genres { get; set; } = null!;
+
+        public DbSet<Director> Directors { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace MovieAppp.Web.Entity
         // Name null olamaz, varsayılan boş string atadık
         [Required]
         public string Name { get; set; } = string.Empty;
+
+        public ICollection<Movie> Movies { get; set; }
     }
 }

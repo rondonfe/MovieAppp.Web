@@ -43,6 +43,13 @@ namespace MovieAppp.Web.Controllers
                 movies = movies.Where(m => m.GenreId == id);
             }
 
+            _context.Genres.Where(g => g.GenreId == id).Select(x => x.Movies).ToList();
+
+            /*
+             Select * from Genres g  
+            inner join Movies m on g.GenreId=m.GenreId
+             where GenreID=id
+             */
 
             if (!string.IsNullOrEmpty(q))
             {
@@ -67,6 +74,7 @@ namespace MovieAppp.Web.Controllers
         // id parametresi ile film seçiliyor.
         public IActionResult Details(int id)
         {
+
             // Repository'den id'ye göre film bulunuyor.
             // Bulunan tekil film nesnesi direkt View'e gönderiliyor.
             return View(_context.Movies.Find(id));

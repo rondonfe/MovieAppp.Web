@@ -10,14 +10,37 @@ using MovieAppp.Web.Entity;
 namespace MovieAppp.Web.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20250918103906_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250918144739_InıtialCreate")]
+    partial class InıtialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
+
+            modelBuilder.Entity("MovieAppp.Web.Entity.Director", b =>
+                {
+                    b.Property<int>("DirectorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Biography")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("DirectorId");
+
+                    b.ToTable("Directors");
+                });
 
             modelBuilder.Entity("MovieAppp.Web.Entity.Genre", b =>
                 {
@@ -43,17 +66,10 @@ namespace MovieAppp.Web.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Directors")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("GenreId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
-
-                    b.PrimitiveCollection<string>("Players")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
